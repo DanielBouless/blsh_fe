@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 const Home = () =>{
@@ -9,10 +9,15 @@ const Home = () =>{
     const [ coin, setCoin] = useState('')
     const [ currency, setCurrency] = useState('')
     const [ tradingPair, setTradingPair ] = useState('BTC-USD')
+    const [ price, setPrice ] = useState('')
+
+    useEffect(()=>{
+      setTradingPair(coin + '-' + currency)
+
+    },[coin, currency])
 
     const handleSubmit =  (e) => {
         e.preventDefault()
-        setTradingPair(coin + '-' + currency)
         console.log(tradingPair)
         const fetchData = async()=>{
         const response = await fetch(`http://localhost:5050/assetInfo/${tradingPair}`,{
@@ -22,7 +27,8 @@ const Home = () =>{
           }
         })
         const res = await response.json()
-        console.log(res)
+        setPrice(res.price)
+        console.log(res.price)
 
       }
         fetchData()
@@ -48,7 +54,11 @@ const Home = () =>{
     </Form>
         <Card>
             <Card.Text>
-                {tradingPair}
+               Asset: {tradingPair}
+            </Card.Text>
+                Price: {price}
+            <Card.Text>
+
             </Card.Text>
         </Card>
         </>
