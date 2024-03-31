@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card'
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 
-const SignUpForm = ()=>{
+const LoginForm = ()=>{
     
     const navigate = useNavigate()
 
@@ -43,16 +43,8 @@ const SignUpForm = ()=>{
     return(
         <>
         <Card>
-            <Card.Title> Sign Up</Card.Title>
+            <Card.Title> Log In</Card.Title>
         <Form onSubmit={(e)=>handleSubmit(e)}>
-        <Form.Group className="mb-3" controlId="formBasicFirstname">
-            <Form.Label>Firstname: </Form.Label>
-            <Form.Control type="text" placeholder="FIRSTNAME" onChange={(e)=>{setCredentials({...credentials, firstname: e.target.value})}}/>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicLastname">
-            <Form.Label>Lastname </Form.Label>
-            <Form.Control type="text" placeholder="LASTNAME" onChange={(e)=>{setCredentials({...credentials, lastname: e.target.value})}}/>
-        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email </Form.Label>
             <Form.Control type="text" placeholder="EMAIL@EMAIL.COM" onChange={(e)=>{setCredentials({...credentials, email: e.target.value})}}/>
@@ -62,7 +54,7 @@ const SignUpForm = ()=>{
             <Form.Control type="text" placeholder="EMAIL@EMAIL.COM" onChange={(e)=>{setCredentials({...credentials, password: e.target.value})}}/>
         </Form.Group>
             <Button variant="primary" type="submit">
-                 SIGN UP
+                 LOG IN
             </Button>
         </Form>
         </Card>

@@ -1,11 +1,11 @@
-const signUpForm = require('../components/SignUpForm')
+import SignUpForm from "../components/SignUpForm"
 
 
 const SignUp = ()=>{
 
 return(
     <>
-    <signUpForm/>
+    <SignUpForm/>
     </>
 )
 
