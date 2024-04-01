@@ -3,9 +3,11 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card'
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
+import { CurrentUser } from "../context/CurrentUser";
 
 const LoginForm = ()=>{
-    
+
+    const { setCurrentUser } = useContext(CurrentUser);
     const navigate = useNavigate()
 
     const [ credentials, setCredentials ] = useState([{
@@ -18,8 +20,8 @@ const LoginForm = ()=>{
     const handleSubmit = (e)=>{
         e.preventDefault()
         
-        const createUser = async(req, res)=>{
-            await fetch(`http://localhost:5050/users/signup`,{
+        const login = async(req, res)=>{
+           const response = await fetch(`http://localhost:5050/users/signup`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -27,14 +29,17 @@ const LoginForm = ()=>{
                 body: JSON.stringify(credentials)
             })
 
-            if(await res.status === 200){
+            const data = await response.json()
+            if(response.status === 200){
+                setCurrentUser(data.user)
+                localStorage.setItem('token', data.token)
                 navigate('/login')
             } else {
                 console.log('error my friend')
             }
         }
 
-        createUser()
+        login()
 
         
     }
@@ -65,4 +70,4 @@ const LoginForm = ()=>{
 
 
 
-export default SignUpForm
+export default LoginForm
