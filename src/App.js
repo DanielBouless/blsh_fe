@@ -7,7 +7,7 @@ import CurrentUserProvider from './context/CurrentUser';
 
 function App() {
   return (
-    //<CurrentUserProvider>
+    <CurrentUserProvider>
     <BrowserRouter>
     <NavigationBar/>
       <Routes>
@@ -15,7 +15,7 @@ function App() {
         <Route exact path='/' element={<Home/>}/>
       </Routes>
     </BrowserRouter>
-    //</CurrentUserProvider>
+    </CurrentUserProvider>
   );
 }
 
